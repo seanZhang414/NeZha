@@ -1,0 +1,9 @@
+description = 'nezha-engine-api'
+apply plugin: 'maven'
+dependencies {
+
+//    compile('cn.com.duiba:wolf')
+    compile 'cn.com.duiba:dcommons-base'
+    compileOnly  'cn.com.duiba:wolf'
+    compileOnly  'cn.com.duiba.boot:spring-boot-ext-api'
+}

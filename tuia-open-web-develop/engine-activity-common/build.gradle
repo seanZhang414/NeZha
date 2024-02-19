@@ -1,0 +1,9 @@
+description = 'engine-activity-common'
+
+repositories {
+    flatDir { dirs 'lib' }
+}
+
+dependencies {
+    
+}

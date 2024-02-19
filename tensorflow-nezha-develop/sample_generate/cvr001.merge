@@ -1,0 +1,11 @@
+#
+sample_name=mid_ftrl_fm_cvr_v001
+last_date=`date -d"yesterday" +"%F"`
+output_file=/data/data/sample/${sample_name}.sample
+input_file=/data/sample/${last_date}/${sample_name}/*/part*
+#
+if [ -f output_file ];then
+rm -rf output_file
+fi
+#
+cat   ${input_file}  >> ${output_file}

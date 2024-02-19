@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://nexus.dui88.com:8081/nexus/content/groups/public/" }
+        mavenCentral()
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+test{
+    exclude("*")
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'tuia-nezha-service'
+    version = ''
+    manifest { attributes 'Main-Class': 'cn.com.duiba.Application'}
+}
+
+
+description = 'nezha-engine-deploy'
+dependencies {
+    compile project(':nezha-engine-common')
+    compile project(':nezha-engine-biz')
+    compile project(':nezha-engine-api')
+
+    compile("com.101tec:zkclient")
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    compile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.springframework.data:spring-data-redis")
+    compile('org.apache.commons:commons-dbcp2')
+
+    compile("org.aspectj:aspectjweaver")
+    compile("com.baidu.disconf:disconf-client")
+
+    //
+    compile('cn.com.duiba.boot:spring-boot-starter-cat')
+    compile("cn.com.duiba.boot:spring-boot-starter-config")
+    compile("cn.com.duiba.boot:spring-boot-starter-logger")
+    compile('cn.com.duiba.boot:spring-boot-starter-perftest')
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+
+
+    compile fileTree(dir: 'lib', include: '*.jar')
+    testCompile("junit:junit")
+}

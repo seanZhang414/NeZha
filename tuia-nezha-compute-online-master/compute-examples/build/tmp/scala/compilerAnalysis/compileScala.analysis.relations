@@ -1,0 +1,29 @@
+products:
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/build/classes/scala/main/cn/com/duiba/nezha/compute/examples/CacheTest$.class
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/build/classes/scala/main/cn/com/duiba/nezha/compute/examples/CacheTest.class
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/build/classes/scala/main/cn/com/duiba/nezha/compute/examples/fm/LocalFM$.class
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/build/classes/scala/main/cn/com/duiba/nezha/compute/examples/fm/LocalFM.class
+binary dependencies:
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib/rt.jar
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> /Users/lwj/.m2/repository/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-mllib/build/libs/compute-mllib-1.0.3-SNAPSHOT.jar
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre/lib/rt.jar
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> /Users/lwj/.m2/repository/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar
+source dependencies:
+external dependencies:
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.core.LabeledPoint
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.core.model.local.LocalMatrix
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.core.model.local.LocalModel
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.core.model.local.LocalModel$
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.core.model.local.LocalVector
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.mllib.fm.ftrl.FM
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.mllib.fm.ftrl.FMFTRL
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.mllib.fm.ftrl.SparseFMWithFTRL
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.mllib.fm.ftrl.SparseFMWithFTRL$
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.mllib.generater.SampleGenerator
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.mllib.generater.SampleGenerator$
+class names:
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> cn.com.duiba.nezha.compute.examples.CacheTest
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/CacheTest.scala -> cn.com.duiba.nezha.compute.examples.CacheTest$
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.examples.fm.LocalFM
+   /Users/lwj/IdeaProjects/tuia-nezha-compute-online/compute-examples/src/main/scala/cn/com/duiba/nezha/compute/examples/fm/LocalFM.scala -> cn.com.duiba.nezha.compute.examples.fm.LocalFM$

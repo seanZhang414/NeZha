@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.duiba.nezha.compute.biz.dao.IAdvertCtrLrModelEvaluateDao">
+
+    <resultMap id="advertCtrLrModelEvaluateEntityResult"
+               type="cn.com.duiba.nezha.compute.biz.entity.model.AdvertCtrLrModelEvaluateEntity">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="modelKey" jdbcType="VARCHAR" property="model_key"/>
+        <result column="dt" jdbcType="VARCHAR" property="dt"/>
+        <result column="traingNums" jdbcType="BIGINT" property="traing_nums"/>
+        <result column="testNums" jdbcType="BIGINT" property="test_nums"/>
+        <result column="featureSize" jdbcType="BIGINT" property="feature_size"/>
+        <result column="testAuprc" jdbcType="DOUBLE" property="test_auprc"/>
+        <result column="testAuroc" jdbcType="DOUBLE" property="test_auroc"/>
+    </resultMap>
+
+    <sql id="tableName">advert_ctr_lr_evaluate_model</sql>
+
+    <sql id="columnsForRead">id,model_key,dt,traing_nums,test_nums,feature_size,test_auprc,test_auroc</sql>
+
+    <sql id="columnsForWrite">model_key,dt,traing_nums,test_nums,feature_size,test_auprc,test_auroc</sql>
+
+
+    <select id="insert" parameterType="cn.com.duiba.nezha.compute.biz.entity.model.AdvertCtrLrModelEvaluateEntity">
+
+        REPLACE INTO
+        <include refid="tableName"/>
+        (<include refid="columnsForWrite"/>)
+        values
+        (#{modelKey},#{dt},#{traingNums},#{testNums},#{featureSize},#{testAuprc},#{testAuroc})
+
+    </select>
+
+    <insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List">
+        REPLACE INTO
+        <include refid="tableName"/>
+        (<include refid="columnsForWrite"/>)
+
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.modelKey},#{item.dt},#{item.traingNums},#{item.testNums},#{item.featureSize},#{item.testAuprc},#{item.testAuroc})
+        </foreach>
+    </insert>
+
+    <select id="selectModelByKey" parameterType="String"
+            resultType="cn.com.duiba.nezha.compute.biz.entity.model.AdvertCtrLrModelEvaluateEntity">
+        select
+        <include refid="columnsForRead"/>
+        from
+        <include refid="tableName"/>
+        where model_key = #{modelKey}
+    </select>
+
+    <select id="selectModelByKeyAndDt" resultMap="advertCtrLrModelEvaluateEntityResult"
+            parameterType="java.util.Map">
+        select
+        <include refid="columnsForRead"/>
+        from
+        <include refid="tableName"/>
+        where model_key = #{modelKey}
+        and dt = #{dt}
+    </select>
+
+    <!-- 删除一条记录 -->
+    <delete id="deleteModelByKeyAndDt" parameterType="java.util.Map">
+        delete
+        from
+        <include refid="tableName"/>
+        where model_key = #{modelKey}
+        and dt = #{dt}
+    </delete>
+
+
+</mapper>

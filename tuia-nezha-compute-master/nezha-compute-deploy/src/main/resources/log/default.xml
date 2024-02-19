@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <property name="logger.path" value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}/logs/suanpan"/>
+
+    <appender name="PROJECT-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logging.path}/all.cn.com.duiba.nezha.compute.biz.constant.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{32}:%line -&gt; %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logging.path}/all.cn.com.duiba.nezha.compute.biz.constant.log.%d{yyyy-MM-dd}.cn.com.duiba.nezha.compute.biz.constant.log.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ERROR-CODE-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logging.path}/errorcode.cn.com.duiba.nezha.compute.biz.constant.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{32}:%line -&gt; %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logging.path}/errorcode.cn.com.duiba.nezha.compute.biz.constant.log.%d{yyyy-MM-dd}.cn.com.duiba.nezha.compute.biz.constant.log.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+    <appender name="PROJECT-CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{32}:%line -&gt; %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--<logger name="java.sql" additivity="false" level="INFO">-->
+    <!--<appender-ref ref="PROJECT-SQL"/>-->
+    <!--</logger>-->
+
+    <root level="info">
+        <appender-ref ref="PROJECT-FILE"/>
+        <appender-ref ref="PROJECT-CONSOLE"/>
+    </root>
+        </included>

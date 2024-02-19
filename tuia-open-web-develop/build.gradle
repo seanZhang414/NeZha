@@ -1,0 +1,133 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://nexus.dui88.com:8081/nexus/content/groups/public/" }
+        //maven { url 'http://repo.spring.io/plugins-release' }
+        // maven { url "https://plugins.gradle.org/m2/" }
+        //maven { url "http://mirrors.ibiblio.org/maven2/" }
+        // maven { url "http://repo.maven.apache.org/maven2" }
+        //mavenCentral()
+    }
+    ext {
+        springBootVersion = "1.5.10.RELEASE"
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:1.2' //sonarqube
+        //classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'org.sonarqube' version '2.5'
+    id "io.spring.dependency-management" version "0.6.1.RELEASE"
+}
+
+ext {
+    duibaBootVersion = '1.2.167'
+    springCloudVersion = 'Edgware.SR2'
+}
+
+//sonarqube
+apply plugin: 'org.sonarqube'
+sonarqube {
+    properties {
+        property "sonar.projectName", "tuia-engine-activity"
+        property "sonar.projectKey", "cn.com.duiba:tuia-engine-activity"
+        property "sonar.host.url", "http://sonar.dui88.com"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+    }
+}
+
+allprojects {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    //apply plugin: 'propdeps'
+    apply plugin: "jacoco"
+    apply plugin: "io.spring.dependency-management"
+    test {
+        ignoreFailures = true
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    group = 'cn.com.duiba.tuia-engine-activity'
+
+    version = '0.0.1'
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    repositories {
+        mavenLocal()
+        maven { url "http://nexus.dui88.com:8081/nexus/content/groups/public/" }
+        //maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        //mavenCentral()
+    }
+
+    configurations {
+        all*.exclude group: 'log4j', module: 'log4j'
+        all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+
+    dependencyManagement {
+        resolutionStrategy {
+            cacheChangingModulesFor 0, 'seconds'
+            cacheDynamicVersionsFor 0, 'seconds'
+        }
+
+        imports {
+            mavenBom "cn.com.duiba.boot:spring-boot-ext-dependencies:${duibaBootVersion}"
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    dependencies {
+        //spring-boot
+        compile('org.springframework.boot:spring-boot-starter-web')
+
+        compile('org.springframework.boot:spring-boot-starter-jdbc')
+        compile("cn.com.duiba.boot:spring-boot-starter-velocity")
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+
+        //duiba-boot
+	    compile("cn.com.duiba.boot:spring-boot-starter-cat:${duibaBootVersion}")
+        compile("cn.com.duiba.boot:spring-boot-starter-velocity:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-perftest:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-accesslog:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-config:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-logger:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-ons:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-redis:${duibaBootVersion}")
+	    compile("cn.com.duiba.boot:spring-boot-starter-xss:${duibaBootVersion}")
+
+
+	    //业务依赖
+	    compile("cn.com.duiba:wolf:2.2.11")
+        compile('cn.com.duiba.dayu-web:dayu-api:1.1.0-SNAPSHOT'){ transitive = false }
+        compile('cn.com.duiba.nezha-engine:nezha-engine-api:1.0.10-SNAPSHOT')
+        compile('cn.com.duiba.tuia-core:tuia-core-api:1.0.5-SNAPSHOT'){ transitive = false }
+        compile('cn.com.duiba.tuia-ssp-center:ssp-center-api:0.2.63'){ transitive = false }
+        compile('cn.com.duiba.tuia-activity-center:activity-center-api:0.9.0.2-lc1-SNAPSHOT'){ transitive = false }
+        compile('cn.com.duiba.nezha-compute:nezha-compute-common:1.19.2030-SNAPSHOT'){ transitive = false }
+        compile('cn.com.duiba.nezha-compute:nezha-compute-api:1.6.1-SNAPSHOT'){ transitive = false }
+        
+        //工程依赖
+        compile('org.slf4j:slf4j-log4j12:1.7.25')
+        compile('org.apache.kafka:kafka-clients:0.9.0.1')
+        compile('com.google.guava:guava:latest.release')
+        compile('com.googlecode.xmemcached:xmemcached:1.4.3')
+        compile('com.google.code.simple-spring-memcached:spymemcached:2.8.4')
+        compile('commons-io:commons-io:2.4')
+        compile('org.apache.commons:commons-lang3:3.6') { force = true }
+        compile('org.apache.commons:commons-text:1.2') { force = true }
+        compile('org.jmockit:jmockit:1.26')
+        compile('commons-beanutils:commons-beanutils:1.8.3')
+    }
+}

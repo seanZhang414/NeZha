@@ -1,0 +1,23 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: TFJob
+metadata:
+  name: tfjob-export-fnn-cvr-002
+spec:
+  replicaSpecs:
+    - replicas: 1 # 1 Master
+      template:
+        spec:
+          containers:
+            - image: tensorflow/tensorflow:1.5.0
+              name: tensorflow
+              command: ["python", "/data/app/fnn-cvr-002/main.py"]
+              args:
+                - --task_type=export
+              volumeMounts:
+              - name: my-nas-pvc
+                mountPath: "/data"
+          volumes:
+            - name: my-nas-pvc
+              persistentVolumeClaim:
+                claimName: pvc-fnn-cvr-002
+          restartPolicy: Never

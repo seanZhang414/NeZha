@@ -1,0 +1,33 @@
+
+description = 'nezha-engine-common'
+
+dependencies {
+    compile project(':nezha-engine-api')
+    compile('commons-dbcp:commons-dbcp')
+    compile('commons-io:commons-io')
+    compile('org.apache.commons:commons-collections4')
+    compile('org.apache.commons:commons-lang3')
+
+    compile('cn.com.duiba:wolf')
+    compile('org.slf4j:log4j-over-slf4j')
+    compile('org.slf4j:slf4j-api')
+    compile("org.jboss.logging:jboss-logging")
+    compile("javax.validation:validation-api")
+    compile("redis.clients:jedis")
+    compile ("org.springframework.data:spring-data-redis")
+
+    compile("org.jboss.resteasy:resteasy-jaxrs")
+    compile("org.jboss.resteasy:resteasy-client")
+    compile("javax.validation:validation-api")
+    compile("org.jboss.resteasy:resteasy-jackson-provider")
+    compile("org.jboss.resteasy:resteasy-netty")
+    compile('org.apache.commons:commons-dbcp2')
+    compile("com.alibaba:fastjson")
+
+    //
+    compile('cn.com.duiba.nezha-compute:nezha-compute-common'){
+        exclude   group:'org.mongodb', module: 'mongo-java-driver'
+    }
+
+    compile group: 'com.aliyun.hbase', name: 'alihbase-client'
+}

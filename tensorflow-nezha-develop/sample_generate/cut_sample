@@ -1,0 +1,13 @@
+#
+sample_name=mid_ftrl_fm_ctr_v001
+worker=10
+date=`date  +"%F"`
+hour=`date  +"%H"`
+file_name=/data/sample/${date}/${sample_name}/${hour}/part*
+
+bath_name_pf=/data/data/sample/${sample_name}.sample/train
+batch_nums=worker
+lines=`sed -n '$=' ${file_name}`
+batch_size=$[${lines}/${batch_nums}+1]
+`split -l ${batch_size} ${file_name}  -d  ${bath_name_pf}`
+

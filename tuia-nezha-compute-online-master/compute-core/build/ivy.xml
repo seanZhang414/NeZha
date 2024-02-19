@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="cn.com.duiba.nezha-compute-online" module="compute-core" revision="1.0.3-SNAPSHOT" status="integration" default="true" publication="20180524153130"/>
+  <configurations>
+    <conf name="apiElements" visibility="private" extends="compile,runtime"/>
+    <conf name="archives" visibility="public"/>
+    <conf name="compile" visibility="private"/>
+    <conf name="compileClasspath" visibility="private" extends="compileOnly,implementation"/>
+    <conf name="compileOnly" visibility="private"/>
+    <conf name="default" visibility="public" extends="runtimeElements"/>
+    <conf name="implementation" visibility="private" extends="compile"/>
+    <conf name="runtime" visibility="private" extends="compile"/>
+    <conf name="runtimeClasspath" visibility="private" extends="implementation,runtime,runtimeOnly"/>
+    <conf name="runtimeElements" visibility="private" extends="implementation,runtime,runtimeOnly"/>
+    <conf name="runtimeOnly" visibility="private"/>
+    <conf name="testCompile" visibility="private" extends="compile"/>
+    <conf name="testCompileClasspath" visibility="private" extends="testCompileOnly,testImplementation"/>
+    <conf name="testCompileOnly" visibility="private"/>
+    <conf name="testImplementation" visibility="private" extends="implementation,testCompile"/>
+    <conf name="testRuntime" visibility="private" extends="runtime,testCompile"/>
+    <conf name="testRuntimeClasspath" visibility="private" extends="testImplementation,testRuntime,testRuntimeOnly"/>
+    <conf name="testRuntimeOnly" visibility="private" extends="runtimeOnly"/>
+    <conf name="zinc" visibility="private"/>
+  </configurations>
+  <publications>
+    <artifact name="compute-core" type="jar" ext="jar" conf="apiElements,archives,runtime,runtimeElements"/>
+    <artifact name="compute-core" type="jar" ext="jar" conf="archives" m:classifier="sources"/>
+  </publications>
+  <dependencies>
+    <dependency org="org.apache.spark" name="spark-core_2.11" rev="2.3.0" conf="compile-&gt;default">
+      <exclude org="javax.servlet" module="*" name="*" type="*" ext="*" conf="compile" matcher="exact"/>
+      <exclude org="io.netty" module="*" name="*" type="*" ext="*" conf="compile" matcher="exact"/>
+    </dependency>
+    <dependency org="org.scala-lang" name="scala-library" rev="2.11.5" conf="compile-&gt;default"/>
+    <dependency org="org.apache.spark" name="spark-mllib_2.11" rev="2.3.0" conf="compile-&gt;default">
+      <exclude org="javax.servlet" module="*" name="*" type="*" ext="*" conf="compile" matcher="exact"/>
+      <exclude org="io.netty" module="*" name="*" type="*" ext="*" conf="compile" matcher="exact"/>
+    </dependency>
+    <dependency org="org.apache.hbase" name="hbase-client" rev="1.2.0" conf="compile-&gt;default"/>
+    <dependency org="org.scalanlp" name="breeze-viz_2.10" rev="0.11.2" conf="compile-&gt;default"/>
+    <dependency org="com.alibaba" name="fastjson" rev="1.2.6" conf="compile-&gt;default"/>
+    <dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.4" conf="compile-&gt;default"/>
+    <dependency org="com.github.scopt" name="scopt_2.10" rev="3.3.0" conf="compile-&gt;default"/>
+    <dependency org="com.hankcs" name="hanlp" rev="portable-1.3.1" conf="compile-&gt;default"/>
+    <dependency org="com.google.guava" name="guava" rev="14.0.1" force="true" conf="compile-&gt;default"/>
+    <dependency org="junit" name="junit" rev="4.11" conf="testCompile-&gt;default"/>
+    <dependency org="com.typesafe.zinc" name="zinc" rev="0.3.13" conf="zinc-&gt;default"/>
+  </dependencies>
+</ivy-module>

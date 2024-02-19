@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<!-- 投放方式日志 -->
+	<appender name="actOutputErrorLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<!-- <Encoding>UTF-8</Encoding> -->
+		<File>${logging.path}/act_output_error.log</File>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<FileNamePattern>${logging.path}/act_output_error.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<!-- keep 1 days' worth of history -->
+			<maxHistory>2</maxHistory>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%m%n</pattern>
+		</layout>
+	</appender>
+	
+	<logger name="ActOutputErrorLog" level="INFO" additivity="false">
+    	<appender-ref ref="actOutputErrorLog"/>
+ 	</logger>
+
+</included>

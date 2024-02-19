@@ -1,0 +1,17 @@
+/.gradle/
+/.idea/
+/build/
+/class/
+/*/build/
+/*/out/
+/nezha-compute-alg/build/
+/nezha-compute-api/build/
+/nezha-compute-biz/build/
+/nezha-compute-common/build/
+/nezha-compute-deploy/build/
+/nezha-compute-mllib/build/
+/nezha-compute-stat/build/
+/duiba-rcmd-alg/build/
+*.iml
+*.DS_Store
+*.class

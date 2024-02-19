@@ -1,0 +1,54 @@
+description = 'compute-deploy'
+
+configurations {
+    //编译期排除commons模块
+//    compile.exclude group: 'com.alibaba',module: 'fastjson'
+    //编译期排除commons模块
+//    runtime.exclude group: 'com.alibaba',module: 'fastjson'
+    //在整个构建过程中排除pkaq.tiger：share
+
+//    compile.exclude group: 'org.apache.spark', module: 'spark-mllib_2.10'
+//    compile.exclude group: 'org.apache.spark', module: 'spark-core_2.10'
+//    compile.exclude group: 'org.scala-lang', module: 'scala-compiler'
+}
+
+
+jar {
+    zip64 true
+    from { configurations.runtime.collect { zipTree(it) } } //
+            {
+                exclude('LICENSE.txt', 'NOTICE.txt', 'rootdoc.txt')
+                exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+                exclude 'META-INF/NOTICE', 'META-INF/NOTICE.txt'
+                exclude 'META-INF/LICENSE', 'META-INF/LICENSE.txt'
+                exclude 'META-INF/DEPENDENCIES'
+            }
+
+    baseName = 'nezha-compute-online-deploy'
+    version = '1.0.0'
+
+//
+//    manifest {
+//        Attributes "Main-Class": "cn.com.duiba.nezha.compute.deploy.HelloWorld"
+//    }
+
+}
+
+dependencies {
+    compile project(':compute-feature')
+    compile project(':compute-ps')
+    compile project(':compute-stat')
+    compile project(':compute-examples')
+    compile project(':compute-core')
+    compile project(':compute-mllib')
+    compile project(':compute-biz')
+    compile project(':compute-alg')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+
+
+    compile fileTree(dir: 'lib', include: '*.jar')
+
+
+
+}

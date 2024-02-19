@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.duiba.nezha.compute.biz.dao.IAdvertCtrLrModelDao">
+
+    <resultMap id="advertCtrLrModelEntityResult" type="cn.com.duiba.nezha.compute.api.dto.AdvertModelEntity">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="modelKey" jdbcType="VARCHAR" property="model_key"/>
+        <result column="dt" jdbcType="VARCHAR" property="dt"/>
+        <result column="featureIdxListStr" jdbcType="VARCHAR" property="feature_idx_list_str"/>
+        <result column="featureDictStr" jdbcType="VARCHAR" property="feature_dict_str"/>
+        <result column="modelStr" jdbcType="VARCHAR" property="model_str"/>
+    </resultMap>
+
+    <sql id="tableName">advert_ctr_lr_model</sql>
+
+    <sql id="columnsForRead">id,model_key,dt,feature_idx_list_str,feature_dict_str,model_str</sql>
+
+    <sql id="columnsForWrite">model_key,dt,feature_idx_list_str,feature_dict_str,model_str</sql>
+
+
+    <select id="insert" parameterType="cn.com.duiba.nezha.compute.api.dto.AdvertModelEntity">
+
+        REPLACE INTO
+        <include refid="tableName"/>
+        (<include refid="columnsForWrite"/>)
+        values
+        (#{modelKey},#{dt},#{featureIdxListStr},#{featureDictStr},#{modelStr})
+
+    </select>
+
+    <insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List">
+
+        REPLACE INTO
+        <include refid="tableName"/>
+        (<include refid="columnsForWrite"/>)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.modelKey},#{item.dt},#{item.featureIdxListStr},#{item.featureDictStr},#{item.modelStr})
+        </foreach>
+    </insert>
+
+    <select id="selectModelByKey" parameterType="String"
+            resultType="cn.com.duiba.nezha.compute.api.dto.AdvertModelEntity">
+        select
+        <include refid="columnsForRead"/>
+        from
+        <include refid="tableName"/>
+        where model_key = #{modelKey}
+        order by gmt_create desc
+        limit 1
+    </select>
+
+    <select id="selectModelByKeyAndDt" resultMap="advertCtrLrModelEntityResult"
+            parameterType="java.util.Map">
+        select
+        <include refid="columnsForRead"/>
+        from
+        <include refid="tableName"/>
+        where model_key = #{modelKey}
+        and dt = #{dt}
+    </select>
+
+    <!-- 删除一条记录 -->
+    <delete id="deleteModelByKeyAndDt" parameterType="java.util.Map">
+        delete
+        from
+        <include refid="tableName"/>
+        where model_key = #{modelKey}
+        and dt = #{dt}
+    </delete>
+</mapper>

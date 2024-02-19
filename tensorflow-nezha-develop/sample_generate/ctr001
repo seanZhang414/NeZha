@@ -1,0 +1,7 @@
+spark-submit  --class cn.com.duiba.nezha.compute.deploy.sample.FMCTRMV001SampleApp /
+--master spark://prd-spark02:6066 /
+--deploy-mode client --driver-memory 6g  /
+--executor-memory 6G  /
+--executor-cores 2  /
+--total-executor-cores 12 /
+ /home/db_sa/nezha-compute-online-deploy-1.0.0.jar

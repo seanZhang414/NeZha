@@ -1,0 +1,9 @@
+include 'nezha-compute-alg'
+include 'nezha-compute-api'
+include 'nezha-compute-biz'
+include 'nezha-compute-common'
+include 'nezha-compute-deploy'
+include 'nezha-compute-mllib'
+include 'nezha-compute-stat'
+include 'duiba-rcmd-alg'
+

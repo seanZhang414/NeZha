@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	<property resource="application.properties" />
+	<include resource="logback/default.xml" />
+
+	<include resource="logback/stat_act_click_log.xml" />
+	<include resource="logback/stat_act_expose_log.xml" />
+	<include resource="logback/stat_act_output_log.xml" />
+	<include resource="logback/stat_act_request_log.xml" />
+	<include resource="logback/stat_act_manual_request_log.xml" />
+	<include resource="logback/stat_act_terminal_log.xml" />
+	<include resource="logback/stat_act_ext_log.xml" />
+
+	<include resource="logback/stat_act_error_log.xml" />
+	<include resource="logback/inner_log.xml" />
+
+	<include resource="logback/act_output_error_log.xml"/>
+</configuration>

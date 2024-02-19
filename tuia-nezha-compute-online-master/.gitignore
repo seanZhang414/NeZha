@@ -1,0 +1,10 @@
+/.gradle/
+/.idea/
+/nezha-compute-common/build/
+/nezha-compute-deploy/build/
+/nezha-compute-biz/build/
+/nezha-compute-api/build/
+.class
+.DS_Store
+/classes/
+/out/

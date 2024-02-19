@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <appender name="info"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <!-- <Encoding>UTF-8</Encoding> -->
+        <File>${logging.path}/application.log</File>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <FileNamePattern>${logging.path}/application.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{32}[%file:%line] -&gt; %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- <appender name="error"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <Encoding>UTF-8</Encoding>
+        <File>${logging.path}/application.error.log</File>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            daily rollover
+            <FileNamePattern>${logging.path}/application.error.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            keep 30 days' worth of history
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date [%thread] %-5level %logger{80} - %msg%n</pattern>
+        </layout>
+    </appender> -->
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{32}[%file:%line] -&gt; %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- 需要记录日志的包 -->
+    <logger name="org.springframework" level="WARN" />
+    <logger name="org.apache" level="WARN" />
+    <logger name="net.sf" level="WARN" />
+    <logger name="net.spy" level="WARN" />
+    <logger name="org.mybatis" level="ERROR" />
+    <logger name="cn.com.duiba.tuia" level="INFO" />
+    <logger name="com.alibaba" level="ERROR" />
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="info"/>
+    </root>
+
+</included>

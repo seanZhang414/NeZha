@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 推荐日志 -->
+    <appender name="BaseLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <!-- <Encoding>UTF-8</Encoding> -->
+        <File>${logging.path}/inner/inner.log</File>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <FileNamePattern>${logging.path}/inner/inner.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <!-- keep 4 days' worth of history -->
+            <maxHistory>4</maxHistory>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%m%n</pattern>
+        </layout>
+    </appender>
+
+    <logger name="cn.com.duiba.nezha.engine.biz.log.BaseInnerLog" level="INFO" additivity="false">
+        <appender-ref ref="BaseLog"/>
+    </logger>
+
+</included>

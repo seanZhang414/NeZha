@@ -1,0 +1,20 @@
+#
+sample_name=mid_ftrl_fm_ctr_v001
+#sample_name_shuf=mid_ftrl_fm_ctr_v001_shuf
+worker=5
+date=`date  +"%F"`
+hour=`date  +"%H"`
+#hour=10
+input_file=/data/sample/${date}/${sample_name}/${hour}/1/part*
+out_path=/data/data/sample/${sample_name}/train/
+tmp_file=${out_path}"tmp"
+
+if [ -d ${out_path} ]; then
+rm -rf ${out_path}
+fi
+mkdir -p ${out_path}
+
+shuf ${input_file} -o ${tmp_file}
+lines=`sed -n '$=' ${tmp_file}`
+batch_size=$[${lines}/${worker}+1]
+split -l ${batch_size} ${tmp_file}  -d  ${out_path}

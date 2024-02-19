@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <property resource="application.properties" />
+    <property name="logger_path" value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}"/>
+    <appender name="PROJECT-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logging.path}/application.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{32}[%file:%line] -&gt; %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logging.path}/application_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--<appender name="ERROR-CODE-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${logging.path}/errorcode.log</file>-->
+        <!--<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+            <!--<pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{32}[%file:%line] -&gt; %msg%n</pattern>-->
+            <!--<charset class="java.nio.charset.Charset">UTF-8</charset>-->
+        <!--</encoder>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${logging.path}/errorcode.log.%d{yyyy-MM-dd}.log.gz</fileNamePattern>-->
+            <!--<maxHistory>7</maxHistory>-->
+        <!--</rollingPolicy>-->
+    <!--</appender>-->
+
+
+    <appender name="PROJECT-CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{32}[%file:%line] -&gt; %msg%n</pattern>
+        <charset class="java.nio.charset.Charset">UTF-8</charset>
+    </encoder>
+</appender>
+
+    <!--<logger name="java.sql" additivity="false" level="INFO">-->
+    <!--<appender-ref ref="PROJECT-SQL"/>-->
+    <!--</logger>-->
+
+    <logger name="jdbc.connection" level="ERROR"/>
+    <logger name="jdbc.audit" level="ERROR"/>
+    <logger name="jdbc.resultset" level="ERROR"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+    <logger name="net.sf.json.JSONObject" level="ERROR"/>
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="com.alibaba.druid.pool.vendor" level="ERROR"/>
+
+    <logger name="jdbc.sqlonly" additivity="false" level="DEBUG">
+        <appender-ref ref="PROJECT-CONSOLE"/>
+    </logger>
+
+    <logger name="druid.sql.Statement" additivity="false" level="DEBUG">
+        <appender-ref ref="PROJECT-CONSOLE"/>
+    </logger>
+
+    <logger name="com.witown" level="DEBUG"/>
+
+    <logger name="com.alibaba.dubbo" level="WARN"/>
+
+    <root level="info">
+        <appender-ref ref="PROJECT-FILE"/>
+        <appender-ref ref="PROJECT-CONSOLE"/>
+    </root>
+        </included>

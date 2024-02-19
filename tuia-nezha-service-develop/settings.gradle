@@ -1,0 +1,14 @@
+rootProject.name = 'nezha-engine'
+include ':nezha-engine-deploy'
+include ':nezha-engine-biz'
+include ':nezha-engine-api'
+include ':nezha-engine-common'
+//include ':nezha-engine-message'
+
+project(':nezha-engine-deploy').projectDir = "$rootDir/nezha-engine-deploy" as File
+project(':nezha-engine-biz').projectDir = "$rootDir/nezha-engine-biz" as File
+project(':nezha-engine-api').projectDir = "$rootDir/nezha-engine-api" as File
+project(':nezha-engine-common').projectDir = "$rootDir/nezha-engine-common" as File
+//project(':nezha-engine-message').projectDir = "$rootDir/nezha-engine-message" as File
+
+

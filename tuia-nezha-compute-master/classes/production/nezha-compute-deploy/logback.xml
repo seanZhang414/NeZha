@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property resource="application.properties"/>
+    <include resource="log/default.xml"/>
+    <!--<include resource="logback/advert/*.xml"/>-->
+    <!--<include resource="logback/advert/advert_stat_message_log.xml"/>-->
+</configuration>

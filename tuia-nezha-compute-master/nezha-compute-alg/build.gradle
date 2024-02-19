@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':nezha-compute-api')
+    compile project(':nezha-compute-common')
+    compile project(':nezha-compute-mllib')
+}

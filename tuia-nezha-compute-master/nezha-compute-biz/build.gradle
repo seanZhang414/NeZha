@@ -1,0 +1,66 @@
+dependencies {
+    compile project(':nezha-compute-api')
+    compile project(':nezha-compute-common')
+    compile project(':nezha-compute-mllib')
+    compile project(':nezha-compute-alg')
+
+    compile(group: 'my.elasticsearch', name: 'es-shaded', version: '1.0.1') {
+            exclude group: 'com.google.guava'//, module: 'servlet-api'
+        exclude group: 'org.elasticsearch'//, module: 'servlet-api'
+    }
+
+// https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.0.4'
+
+    // redis
+    compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+
+    // mysql
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.26'
+
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
+
+
+    compile (group: 'cn.com.duiba.thirdparty-service', name: 'thirdparty-service-api', version: '0.0.7-SNAPSHOT'){
+        exclude group: 'org.slf4j',module:'log4j-over-slf4j'
+    }
+
+    compile(group: 'cn.com.duiba.data-sync', name: 'dts-api', version: '0.0.6-SNAPSHOT') {
+        exclude group: 'org.apache.httpcomponents'//, module: 'servlet-api'
+
+    }
+
+
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.2.5'
+
+    // https://mvnrepository.com/artifact/org.apache.spark/spark-streaming_2.10
+
+    compile(group: 'org.apache.spark', name: 'spark-streaming_2.10', version: '1.6.0-cdh5.9.0') {
+        exclude group: 'javax.servlet'//, module: 'servlet-api'
+        exclude group: 'io.netty'//, module: 'servlet-api'
+    }
+
+    compile(group: 'org.apache.spark', name: 'spark-streaming-kafka_2.10', version: '1.6.0-cdh5.9.0') {
+        exclude group: 'javax.servlet'//, module: 'servlet-api'
+        exclude group: 'io.netty'//, module: 'servlet-api'
+    }
+
+
+    // https://mvnrepository.com/artifact/org.apache.spark/spark-hive_2.10
+    compile group: 'org.apache.spark', name: 'spark-hive_2.10', version: '1.6.0'
+
+//    compile(group: 'org.apache.spark', name: 'spark-streaming_2.10', version: '1.6.0') {
+//        exclude group: 'javax.servlet'//, module: 'servlet-api'
+//        exclude group: 'io.netty'//, module: 'servlet-api'
+//    }
+
+    // https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-kafka_2.10
+//    compile(group: 'org.apache.spark', name: 'spark-streaming-kafka_2.10', version: '1.6.0') {
+//        exclude group: 'javax.servlet'//, module: 'servlet-api'
+//        exclude group: 'io.netty'//, module: 'servlet-api'
+//    }
+    //  '0.10.0.1' '0.8.2.1'  '0.10.2.1'
+    compile(group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.9.0.1') {
+        force = true
+    }
+}

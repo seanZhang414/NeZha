@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	   default-autowire="byName">
+
+
+	<!--广告平台redis-->
+    <bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+		<property name="hostName" value="${nezha.engine.redis.host}" />
+		<property name="password" value="${nezha.engine.redis.password}" />
+		<property name="port" value="${nezha.engine.redis.port}" />
+		<property name="poolConfig" ref="jedisPoolConfig" />
+	</bean>
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory"   ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashKeySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashValueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>	
+	</bean>
+
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+		<property name="connectionFactory"   ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashKeySerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="hashValueSerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+	</bean>
+
+
+	<bean id="redisUtil" class=" cn.com.duiba.nezha.engine.common.cache.RedisUtil" >
+		<property name="redisTemplate" ref="redisTemplate" />
+	</bean >
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${nezha.engine.redis.pool.maxTotal}" />
+		<property name="maxIdle" value="${nezha.engine.redis.pool.maxIdle}" />
+		<property name="minIdle" value="${nezha.engine.redis.pool.minIdle}" />
+		<property name="testOnBorrow" value="${nezha.engine.redis.pool.testOnBorrow}" />
+		<property name="maxWaitMillis" value="${nezha.engine.redis.pool.maxWaitMills}" />
+	</bean>
+
+
+	<!--哪吒redis-->
+	<bean class="org.springframework.data.redis.core.StringRedisTemplate" id="nezhaStringRedisTemplate">
+		<property name="connectionFactory">
+			<bean
+					class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+					destroy-method="destroy">
+				<property name="hostName" value="${nezha.redis.host}"/>
+				<property name="password" value="${nezha.redis.password}"/>
+				<property name="port" value="${nezha.redis.port}"/>
+				<property name="poolConfig" ref="jedisPoolConfig"/>
+			</bean>
+		</property>
+		<property name="keySerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+		</property>
+		<property name="valueSerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+		</property>
+		<property name="hashKeySerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+		</property>
+		<property name="hashValueSerializer">
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+		</property>
+	</bean>
+	
+</beans>

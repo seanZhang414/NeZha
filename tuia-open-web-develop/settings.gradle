@@ -1,0 +1,4 @@
+rootProject.name = 'tuia-open-web'
+include 'engine-activity-common'
+include 'engine-activity-biz'
+include 'engine-activity-deploy'

@@ -1,0 +1,162 @@
+//buildscript {
+//    repositories {
+//        mavenLocal()
+//        maven { url 'http://nexus.dui88.com:8081/nexus/content/groups/public/' }
+//        mavenCentral()
+//        maven { url 'https://repository.cloudera.com/content/repositories/releases/' }
+//    }
+//}
+
+
+
+allprojects {
+    apply plugin: 'maven'
+    apply plugin: 'scala'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+
+    group = 'cn.com.duiba.nezha-compute'
+
+    version = '1.23.4-SNAPSHOT'
+
+
+    // JVM 版本号要求
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+//    configurations {
+//        //编译期排除commons模块
+//        //在整个构建过程中排除pkaq.tiger：share
+//        all*.exclude group: 'com.esotericsoftware.kryo' ,module: 'kryo'
+//
+//    }
+
+}
+
+
+subprojects {
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+
+    dependencies {
+
+        compile(group: 'org.apache.spark', name: 'spark-core_2.10', version: '1.6.0') {
+            exclude group: 'javax.servlet'//, module: 'servlet-api'
+            exclude group: 'io.netty'//, module: 'servlet-api'
+        }
+
+        // scala
+        compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.4'
+
+
+        compile(group: 'org.apache.spark', name: 'spark-mllib_2.10', version: '1.6.0') {
+            exclude group: 'javax.servlet'//, module: 'servl et-api'
+            exclude group: 'io.netty'//, module: 'servlet-api'
+        }
+
+        // hbase
+        compile(group: 'org.apache.hbase', name: 'hbase-client', version: '1.2.0') {
+//            exclude group: 'io.netty'//, module: 'servlet-api'
+//            exclude group: 'com.google.guava'//, module: 'servlet-api'
+        }
+
+        // https://mvnrepository.com/artifact/org.scalanlp/breeze-viz_2.10
+        compile group: 'org.scalanlp', name: 'breeze-viz_2.10', version: '0.11.2'
+
+        // json
+        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.6'
+
+        // jackson
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.4.4'
+
+        // scopt
+        compile group: 'com.github.scopt', name: 'scopt_2.10', version: '3.3.0'
+
+        compile group: 'com.hankcs', name: 'hanlp', version: 'portable-1.3.1'
+
+
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+
+        compile(group: 'com.google.guava', name: 'guava', version: '14.0.1') {
+            force = true
+        }
+//
+//        compile(group: 'com.esotericsoftware', name: 'kryo', version: '4.0.1') {
+//            force = true
+//        }
+//
+//        compile(group: 'com.esotericsoftware.kryo', name: 'kryo', version: '2.21.9') {
+//            force = true
+//        }
+
+
+        repositories {
+            mavenLocal()
+            maven { url "http://nexus.dui88.com:8081/nexus/content/groups/public/" }
+            maven { url "http://repo.maven.apache.org/maven2" }
+            mavenCentral()
+            maven { url 'https://repository.cloudera.com/content/repositories/releases/' }
+        }
+    }
+
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "http://nexus.dui88.com:8081/nexus/content/repositories/snapshots/") {
+                    authentication(userName: "admin", password: "admin123")
+                }
+
+                pom.project {
+                    name project.name
+                    packaging 'jar'
+                    description 'notify client'
+                    url 'www.duiba.com.cn'
+
+                    scm {
+                        url ''
+                        connection ''
+                        developerConnection ''
+                    }
+
+                    licenses {
+                        license {
+                            name 'No License'
+                            url 'http://www.duiba.com.cn'
+                            distribution 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'xuhengfei'
+                            name 'Hengfei Xu'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives sourcesJar
+    }
+
+    task listJars(description: 'Display all compile jars.') << {
+        configurations.compile.each { File file -> println file.name }
+    }
+
+
+}
+
+
+
+

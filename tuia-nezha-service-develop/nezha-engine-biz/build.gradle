@@ -1,0 +1,102 @@
+description = 'nezha-engine-biz'
+
+//apply plugin: 'scala'
+dependencies {
+    compile project(':nezha-engine-api')
+    compile project(':nezha-engine-common')
+
+    compile('org.mybatis:mybatis')
+    compile('org.mybatis:mybatis-spring')
+    compile('mysql:mysql-connector-java')
+
+    compile('org.springframework:spring-context')
+    compile('org.springframework:spring-context-support')
+    compile('org.springframework:spring-orm')
+    compile('org.springframework:spring-beans')
+    compile('org.springframework:spring-core')
+    compile('org.springframework:spring-web')
+    compile('commons-dbcp:commons-dbcp')
+    compile('commons-io:commons-io')
+    compile('org.apache.commons:commons-collections4')
+    compile('org.apache.commons:commons-lang3')
+    compile('org.slf4j:log4j-over-slf4j')
+    compile('org.slf4j:slf4j-api')
+    compile('cn.com.duiba.nezha-alg:alg-feature')
+    compile('cn.com.duiba.nezha-alg:alg-common')
+    compile('cn.com.duiba.nezha-alg:alg-alg')
+    compile('cn.com.duiba.nezha-alg:alg-model')
+
+    compile('cglib:cglib')
+    compile('com.google.guava:guava')
+    compile('cn.com.duiba:wolf')
+    compile("com.101tec:zkclient")
+
+    compile("org.javassist:javassist")
+    compile("asm:asm-all")
+
+    compile("org.jboss.logging:jboss-logging")
+    compile("javax.validation:validation-api")
+
+//    compile('io.netty:netty')
+
+    compile("redis.clients:jedis")
+
+    compile("org.jboss.resteasy:resteasy-jaxrs")
+    compile("org.jboss.resteasy:resteasy-client")
+    compile("javax.validation:validation-api")
+    compile("org.jboss.resteasy:resteasy-jackson-provider")
+    compile("org.jboss.resteasy:resteasy-netty")
+    compile('org.apache.commons:commons-dbcp2')
+
+    compile("cn.com.duiba.idmaker-service:idmaker-service-api")
+//    compile('cn.com.duiba.tuia:tuia-client')
+    compile('cn.com.duiba.goods-center:goods-center-api')
+    compile('cn.com.duiba:dcommons-base')
+    compile('org.json:json')
+
+    testCompile('org.springframework:spring-test')
+
+//    compile('cn.com.duiba.boot:spring-boot-starter-perftest')
+
+
+    compile('cn.com.duiba.nezha-compute:nezha-compute-api'){
+        exclude   group:'org.mongodb', module: 'mongo-java-driver'
+    }
+    compile('cn.com.duiba.nezha-compute:nezha-compute-alg'){
+        exclude   group:'org.mongodb', module: 'mongo-java-driver'
+    }
+    compile('cn.com.duiba.nezha-compute:nezha-compute-mllib'){
+        exclude   group:'org.mongodb', module: 'mongo-java-driver'
+    }
+
+    compile('org.springframework.data:spring-data-mongodb')
+    compile 'org.mongodb:mongo-java-driver'
+
+    compile("cn.com.duiba.boot:spring-boot-starter-hbase")
+
+    compile 'org.springframework.data:spring-data-hadoop:2.5.0.RELEASE'
+    compile group: 'com.aliyun.hbase', name: 'alihbase-client'
+
+    compile('cn.com.duiba.boot:spring-boot-starter-rocketmq')
+
+
+    compile group: 'org.apache.httpcomponents', name: 'httpclient'
+
+    testCompile("org.mockito:mockito-core")
+    compile("org.powermock:powermock-api-mockito")
+    compile("org.powermock:powermock-module-junit4")
+
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+    compile 'org.springframework.cloud:spring-cloud-starter-ribbon'
+    compile 'org.springframework.cloud:spring-cloud-starter-feign'
+
+    compile "com.dianping.cat:cat-client"
+
+    compile group: 'cn.com.duiba.nezha-compute-online', name: 'compute-alg'
+    compile group: 'cn.com.duiba.nezha-compute-online', name: 'compute-feature'
+    compile group: 'cn.com.duiba.nezha-compute-online', name: 'compute-core'
+}
+//test.useTestNG()

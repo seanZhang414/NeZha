@@ -1,0 +1,27 @@
+sonarqube_feature_preview:
+  script:
+    - git config --global user.email "sonar@duiba"
+    - git config --global user.name "sonar"
+    - git checkout origin/develop
+    - git merge $CI_COMMIT_SHA --no-commit --no-ff
+    - gradle clean
+    - export
+    - gradle sonarqube -Dsonar.host.url=http://sonar.dui88.com -Dsonar.branch=dummy -Dsonar.login=reporter -Dsonar.password=duiba123456 -Dsonar.analysis.mode=preview -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -x test
+  stage: test
+  only:
+    - /^feature.*$/
+  tags:
+    - test
+
+
+sonarqube_develop_preview:
+  script:
+    - git config --global user.email "sonar@duiba"
+    - git config --global user.name "sonar"
+    - git checkout origin/develop
+    - gradle clean
+    - gradle sonarqube -Dsonar.host.url=http://sonar.dui88.com -Dsonar.login=reporter -Dsonar.password=duiba123456 -x test
+  only:
+    - develop
+  tags:
+    - test

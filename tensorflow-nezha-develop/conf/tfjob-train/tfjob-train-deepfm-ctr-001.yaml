@@ -1,0 +1,83 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: TFJob
+metadata:
+  name: tfjob-train-deepfm-ctr-001
+spec:
+  replicaSpecs:
+    - replicas: 1 # 1 Master
+      tfReplicaType: MASTER
+      template:
+        spec:
+          containers:
+            - image: tensorflow/tensorflow:1.5.0
+              name: tensorflow
+              env:
+              - name: TEST_TMPDIR
+                value: /data
+              command: ["python", "/data/app/deepfm-ctr-001/main.py"]
+              resources:
+              #  limits:
+              #    nvidia.com/gpu: 1
+                requests:
+                  memory: "1Gi"
+                  cpu: "1"
+                limits:
+                  memory: "4Gi"
+                  cpu: "4"
+              volumeMounts:
+              - name: my-nas-pvc
+                mountPath: "/data"
+          volumes:
+            - name: my-nas-pvc
+              persistentVolumeClaim:
+                claimName: pvc-deepfm-ctr-001
+          restartPolicy: OnFailure
+    - replicas: 4 # 1 or 2 Workers depends on how many gpus you have
+      tfReplicaType: WORKER
+      template:
+        spec:
+          containers:
+          - image: tensorflow/tensorflow:1.5.0
+            name: tensorflow
+            env:
+            - name: TEST_TMPDIR
+              value: /data
+            command: ["python", "/data/app/deepfm-ctr-001/main.py"]
+            imagePullPolicy: Always
+            resources:
+#              limits:
+#                nvidia.com/gpu: 1
+              requests:
+                memory: "1Gi"
+                cpu: "1"
+              limits:
+                memory: "4Gi"
+                cpu: "4"
+            volumeMounts:
+              - name: my-nas-pvc
+                mountPath: "/data"
+          volumes:
+            - name: my-nas-pvc
+              persistentVolumeClaim:
+                claimName: pvc-deepfm-ctr-001
+          restartPolicy: OnFailure
+    - replicas: 1  # 1 Parameter server
+      tfReplicaType: PS
+      template:
+        spec:
+          containers:
+          - image: tensorflow/tensorflow:1.5.0
+            name: tensorflow
+            command: ["python", "/data/app/deepfm-ctr-001/main.py"]
+            env:
+            - name: TEST_TMPDIR
+              value: /data
+            imagePullPolicy: Always
+            volumeMounts:
+              - name: my-nas-pvc
+                mountPath: "/data"
+          volumes:
+            - name: my-nas-pvc
+              persistentVolumeClaim:
+                claimName: pvc-deepfm-ctr-001
+          restartPolicy: OnFailure

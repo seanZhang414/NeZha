@@ -1,0 +1,11 @@
+rootProject.name = 'tuia-nezha-compute-online'
+include 'compute-core'
+include 'compute-deploy'
+include 'compute-mllib'
+include 'compute-feature'
+include 'compute-stat'
+include 'compute-ps'
+include 'compute-biz'
+include 'compute-examples'
+include 'compute-alg'
+

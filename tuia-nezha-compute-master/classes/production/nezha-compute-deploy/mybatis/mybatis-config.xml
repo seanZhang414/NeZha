@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+  使用了两种指定属性方法：
+  1.使用resource关键字包含外部属性文件
+  2.直接声明属性
+
+  说明：
+  如果在properties中专用明的属性与resource引用的外部属性文件中有重名的属性，
+  本处声明的属性优先级相对较高，会覆盖掉外部文件中的属性值
+ -->
+    <properties resource="application.properties">
+        <property name="driver-mysql" value="com.mysql.jdbc.Driver"></property>
+    </properties>
+
+
+        <!-- 将数据库字段命名规则A_COLUMN转换为Java使用的驼峰式命名规则aCloumn -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+    <typeAliases>
+    </typeAliases>
+
+
+    <environments default="sp-mysql">
+        <environment id="sp-mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver-mysql}"/>
+                <property name="url" value="${nezha.compute.jdbc.url}"/>
+                <property name="username" value="${nezha.compute.jdbc.username}"/>
+                <property name="password" value="${nezha.compute.jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <mappers>
+        <mapper resource="mybatis/mapper/model-dao-mapper.xml"/>
+        <mapper resource="mybatis/mapper/model-evaluate-dao-mapper.xml"/>
+    </mappers>
+
+</configuration>
+

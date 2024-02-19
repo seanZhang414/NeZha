@@ -1,0 +1,56 @@
+dependencies {
+    compile project(':compute-ps')
+    compile project(':compute-mllib')
+    compile project(':compute-core')
+    compile project(':compute-feature')
+    compile project(':compute-alg')
+    // redis
+    compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+
+    // mysql
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.26'
+
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
+
+    compile(group: 'cn.com.duiba.data-sync', name: 'dts-api', version: '0.0.6-SNAPSHOT') {
+        exclude group: 'org.apache.httpcomponents'//, module: 'servlet-api'
+    }
+
+
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.2.5'
+
+    compile(group: 'org.apache.spark', name: 'spark-streaming_2.11', version: '2.3.0') {
+//        exclude group: 'javax.servlet'//, module: 'servlet-api'
+//        exclude group: 'io.netty'//, module: 'servlet-api'
+    }
+
+    // https://mvnrepository.com/artifact/org.apache.spark/spark-streaming
+//    compile group: 'org.apache.spark', name: 'spark-streaming_2.11', version: '2.3.0'
+//
+
+    compile(group: 'org.apache.spark', name: 'spark-streaming-kafka-0-10_2.11', version: '2.3.0') {
+//        exclude group: 'javax.servlet'//, module: 'servlet-api'
+//        exclude group: 'io.netty'//, module: 'servlet-api'
+    }
+
+
+    // hbase
+    compile(group: 'org.apache.hbase', name: 'hbase-client', version: '1.2.0') {
+//            exclude group: 'io.netty'//, module: 'servlet-api'
+            //exclude group: 'com.google.guava'//, module: 'servlet-api'
+    }
+
+
+    // https://mvnrepository.com/artifact/org.apache.spark/spark-hive_2.10
+    compile group: 'org.apache.spark', name: 'spark-hive_2.11', version: '2.3.0'
+
+    //  '0.10.0.1' '0.8.2.1'  '0.10.2.1'
+//    compile(group: 'org.apache.kafka', name: 'kafka_2.11', version: '0.10.0.1') {
+////        force = true
+//    }
+
+
+    compile(group: 'com.google.guava', name: 'guava', version: '16.0.1') {
+        force = true
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<!-- inner日志 -->
+	<appender name="innerLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<!-- <Encoding>UTF-8</Encoding> -->
+		<File>${logging.path}/inner/inner.log</File>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<FileNamePattern>${logging.path}/inner/inner.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%m%n</pattern>
+		</layout>
+	</appender>
+
+	<logger name="cn.com.duiba.tuia.engine.activity.log.InnerLog" level="INFO" additivity="false">  
+    	<appender-ref ref="innerLog"/>  
+ 	</logger>
+
+</included>

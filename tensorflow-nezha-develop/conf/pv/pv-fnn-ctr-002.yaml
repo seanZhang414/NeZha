@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-fnn-ctr-002
+  labels:
+    tfjob: tfjob-fnn-ctr-002
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nas
+  flexVolume:
+    driver: "alicloud/nas"
+    options:
+      mode: "755"
+      path: /data
+      server: 0802d48712-bvu30.cn-hangzhou.nas.aliyuncs.com
+      vers: "4.0"
+
+

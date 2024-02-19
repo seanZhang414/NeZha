@@ -1,0 +1,20 @@
+description = 'engine-activity-deploy'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'tuia-open-web'
+    version =  ''
+    manifest { attributes 'Main-Class': 'cn.com.duiba.tuia.engine.activity.web.Application' }
+}
+
+bootRepackage {
+    mainClass = 'cn.com.duiba.tuia.engine.activity.web.Application'
+}
+
+
+dependencies {
+    // 工程依赖
+    compile project(':engine-activity-biz')
+    compile project(':engine-activity-common')
+    
+}

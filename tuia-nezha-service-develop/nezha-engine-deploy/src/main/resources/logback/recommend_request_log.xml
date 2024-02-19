@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <property resource="application.properties"/>
+
+    <!-- 推荐日志 -->
+    <appender name="recommendRequestLog" class="ch.qos.logback.classic.net.SyslogAppender">
+
+        <syslogHost>${nezha.syslog.prod.host}</syslogHost>
+        <facility>${nezha.syslog.prod.facility}</facility>
+        <port>${nezha.syslog.prod.port}</port>
+        <suffixPattern>%m%n</suffixPattern>
+    </appender>
+
+    <logger name="cn.com.duiba.nezha.engine.deploy.interceptor.RecommendInterceptor" level="INFO" additivity="false">
+        <appender-ref ref="recommendRequestLog"/>
+    </logger>
+
+</included>
+
+
+
